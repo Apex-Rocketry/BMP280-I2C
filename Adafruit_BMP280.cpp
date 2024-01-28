@@ -181,13 +181,13 @@ int16_t Adafruit_BMP280::readS16_LE(byte reg) {
 uint32_t Adafruit_BMP280::read24(byte reg) {
   uint8_t buffer[3];
 
-  if (i2c_dev) {
+  //! if (i2c_dev) {
     buffer[0] = uint8_t(reg);
     i2c_dev->write_then_read(buffer, 1, buffer, 3);
-  } else {
-    buffer[0] = uint8_t(reg | 0x80);
-    spi_dev->write_then_read(buffer, 1, buffer, 3);
-  }
+  // } else {
+  //   buffer[0] = uint8_t(reg | 0x80);
+  //   spi_dev->write_then_read(buffer, 1, buffer, 3);
+  // }
   return uint32_t(buffer[0]) << 16 | uint32_t(buffer[1]) << 8 |
          uint32_t(buffer[2]);
 }
