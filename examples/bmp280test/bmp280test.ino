@@ -4,7 +4,7 @@
   Designed specifically to work with the Adafruit BMP280 Breakout
   ----> http://www.adafruit.com/products/2651
 
-  These sensors use I2C or SPI to communicate, 2 or 4 pins are required
+  These sensors use I2C  to communicate, 2 pins are required
   to interface.
 
   Adafruit invests time and resources providing this open source code,
@@ -16,20 +16,15 @@
  ***************************************************************************/
 
 #include <Wire.h>
-#include <SPI.h>
-#include <Adafruit_BMP280.h>
+#include <BMP280_I2C.h>
 
-#define BMP_SCK  (13)
-#define BMP_MISO (12)
-#define BMP_MOSI (11)
-#define BMP_CS   (10)
 
 Adafruit_BMP280 bmp; // I2C
 //Adafruit_BMP280 bmp(BMP_CS); // hardware SPI
 //Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO,  BMP_SCK);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while ( !Serial ) delay(100);   // wait for native usb
   Serial.println(F("BMP280 test"));
   unsigned status;

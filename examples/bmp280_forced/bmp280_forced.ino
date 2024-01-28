@@ -4,7 +4,7 @@
   Designed specifically to work with the Adafruit BMP280 Breakout
   ----> http://www.adafruit.com/products/2651
 
-  These sensors use I2C or SPI to communicate, 2 or 4 pins are required
+  These sensors use I2C  to communicate, 2 pins are required
   to interface.
 
   Adafruit invests time and resources providing this open source code,
@@ -15,26 +15,24 @@
   BSD license, all text above must be included in any redistribution
  ***************************************************************************/
 
-#include <Adafruit_BMP280.h>
-
-#define BMP_SCK  (13)
-#define BMP_MISO (12)
-#define BMP_MOSI (11)
-#define BMP_CS   (10)
+#include <BMP280_I2C.h>
 
 Adafruit_BMP280 bmp; // I2C
-//Adafruit_BMP280 bmp(BMP_CS); // hardware SPI
-//Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO,  BMP_SCK);
+// Adafruit_BMP280 bmp(BMP_CS); // hardware SPI
+// Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO,  BMP_SCK);
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
   Serial.println(F("BMP280 Forced Mode Test."));
 
-  //if (!bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID)) {
-  if (!bmp.begin()) {
+  // if (!bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID)) {
+  if (!bmp.begin())
+  {
     Serial.println(F("Could not find a valid BMP280 sensor, check wiring or "
-                      "try a different address!"));
-    while (1) delay(10);
+                     "try a different address!"));
+    while (1)
+      delay(10);
   }
 
   /* Default settings from datasheet. */
@@ -45,10 +43,12 @@ void setup() {
                   Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
 }
 
-void loop() {
+void loop()
+{
   // must call this to wake sensor up and get new measurement data
   // it blocks until measurement is complete
-  if (bmp.takeForcedMeasurement()) {
+  if (bmp.takeForcedMeasurement())
+  {
     // can now print out the new measurements
     Serial.print(F("Temperature = "));
     Serial.print(bmp.readTemperature());
@@ -64,9 +64,9 @@ void loop() {
 
     Serial.println();
     delay(2000);
-  } else {
+  }
+  else
+  {
     Serial.println("Forced measurement failed!");
   }
-
-
 }

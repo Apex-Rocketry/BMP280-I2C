@@ -5,7 +5,8 @@
   Designed specifically to work with the Adafruit BMP280 Breakout
   ----> http://www.adafruit.com/products/2651
 
-  These sensors use I2C or SPI to communicate, 2 or 4 pins are required
+
+  These sensors use I2C  to communicate, 2 pins are required
   to interface.
 
   Adafruit invests time and resources providing this open source code,
@@ -17,8 +18,7 @@
  ***************************************************************************/
 
 #include <Wire.h>
-#include <SPI.h>
-#include <Adafruit_BMP280.h>
+#include <BMP280_I2C.h>
 
 Adafruit_BMP280 bmp; // use I2C interface
 Adafruit_Sensor *bmp_temp = bmp.getTemperatureSensor();
