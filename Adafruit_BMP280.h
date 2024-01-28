@@ -25,7 +25,7 @@
 #include <Arduino.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_I2CDevice.h>
-#include <Adafruit_SPIDevice.h>
+//! #include <Adafruit_SPIDevice.h>
 // clang-format on
 
 /*!
@@ -180,8 +180,8 @@ public:
   };
 
   Adafruit_BMP280(TwoWire *theWire = &Wire);
-  Adafruit_BMP280(int8_t cspin, SPIClass *theSPI = &SPI);
-  Adafruit_BMP280(int8_t cspin, int8_t mosipin, int8_t misopin, int8_t sckpin);
+  //! Adafruit_BMP280(int8_t cspin, SPIClass *theSPI = &SPI);
+  //! Adafruit_BMP280(int8_t cspin, int8_t mosipin, int8_t misopin, int8_t sckpin);
   ~Adafruit_BMP280(void);
 
   bool begin(uint8_t addr = BMP280_ADDRESS, uint8_t chipid = BMP280_CHIPID);
@@ -208,7 +208,7 @@ public:
 private:
   TwoWire *_wire;                     /**< Wire object */
   Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
-  Adafruit_SPIDevice *spi_dev = NULL; ///< Pointer to SPI bus interface
+  // Adafruit_SPIDevice *spi_dev = NULL; ///< Pointer to SPI bus interface
 
   Adafruit_BMP280_Temp *temp_sensor = NULL;
   Adafruit_BMP280_Pressure *pressure_sensor = NULL;
@@ -223,7 +223,7 @@ private:
     unsigned int filter : 3;
     /** Unused - don't set */
     unsigned int none : 1;
-    /** Enables 3-wire SPI */
+    // /** Enables 3-wire SPI */
     unsigned int spi3w_en : 1;
     /** Used to retrieve the assembled config register's byte value. */
     unsigned int get() { return (t_sb << 5) | (filter << 2) | spi3w_en; }
@@ -245,7 +245,7 @@ private:
   };
 
   void readCoefficients(void);
-  uint8_t spixfer(uint8_t x);
+  // uint8_t spixfer(uint8_t x);
   void write8(byte reg, byte value);
   uint8_t read8(byte reg);
   uint16_t read16(byte reg);
